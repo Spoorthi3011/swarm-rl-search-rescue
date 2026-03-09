@@ -56,22 +56,23 @@ convergence speed, and robustness compared to independent learners?
 ## Folder Structure
 ```
 swarm-marl-search-rescue/
-├── src/
-│   ├── agent.py         # decentralised agent, local Q-network
-│   ├── server.py        # Flower federated server
-│   ├── environment.py   # custom rescue grid environment
-│   ├── swarm.py         # PSO and pheromone coordination
-│   └── utils.py         # reward shaping, logging
-├── notebooks/
-│   ├── 01_eda.ipynb
-│   ├── 02_training.ipynb
-│   └── 03_results_analysis.ipynb
-├── data/                # environment configs, replay buffers
-├── models/              # agent checkpoints
-├── results/             # rescue metrics, convergence plots
+├── agents/          # decentralised agent policies, Q-networks
+├── environment/     # custom rescue grid environment
+├── swarm/           # PSO and pheromone coordination modules
+├── training/        # training loops, federated server
+├── experiments/     # configs, results, benchmark runs
+├── config.py        # global hyperparameters and settings
+├── main.py          # entry point
 ├── requirements.txt
 └── README.md
 ```
+```
+
+---
+
+**Commit message to use for this fix:**
+```
+docs(readme): update folder structure to match actual repo layout
 
 ---
 
