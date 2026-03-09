@@ -67,11 +67,6 @@ swarm-marl-search-rescue/
 └── README.md
 ```
 ```
-
----
-
-**Commit message to use for this fix:**
-```
 docs(readme): update folder structure to match actual repo layout
 
 ---
