@@ -111,13 +111,3 @@ python agents/agent.py --id 1 --env rescue-v1
 MIT License — see [LICENSE](LICENSE)
 ```
 
----
-
-**Three fixes made:**
-1. Removed the stray ` ```docs(readme)... ``` ` commit message that was sitting in the middle of your README
-2. Fixed `How to Run` — changed `src/server.py` and `src/agent.py` to match your actual folder structure (`agents/`, `training/`)
-3. Added the **Roadmap** section we discussed
-
-Commit message to use:
-```
-docs(readme): fix run commands, remove stray commit message, add roadmap
