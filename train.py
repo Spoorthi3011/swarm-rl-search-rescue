@@ -4,7 +4,7 @@ import flwr as fl
 from environment.grid_env import GridSearchRescueEnv
 from agents.dqn_agent import DQNAgent
 from agents.replay_buffer import ReplayBuffer
-from federated.flwr_client import DQNClient
+from flwr_client import DQNClient
 
 
 # =========================
