@@ -3,8 +3,8 @@ import numpy as np
 
 class ReplayBuffer:
     def __init__(self, capacity=10000):
-        self.capacity = capacity
         self.buffer = []
+        self.capacity = capacity
         self.pos = 0
 
     def push(self, state, action, reward, next_state, done):
@@ -19,14 +19,14 @@ class ReplayBuffer:
 
     def sample(self, batch_size):
         batch = random.sample(self.buffer, batch_size)
-        states, actions, rewards, next_states, dones = zip(*batch)
+        s, a, r, ns, d = zip(*batch)
 
         return (
-            np.array(states),
-            np.array(actions),
-            np.array(rewards),
-            np.array(next_states),
-            np.array(dones)
+            np.array(s),
+            np.array(a),
+            np.array(r),
+            np.array(ns),
+            np.array(d)
         )
 
     def __len__(self):
