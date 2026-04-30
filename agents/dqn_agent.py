@@ -1,8 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-import numpy as np
 import random
+
 
 class DQN(nn.Module):
     def __init__(self, input_dim, output_dim):
@@ -29,12 +29,15 @@ class DQNAgent:
         self.optimizer = optim.Adam(self.model.parameters(), lr=lr)
         self.criterion = nn.MSELoss()
 
-        self.action_dim = action_dim
-
         self.gamma = 0.99
         self.epsilon = 1.0
         self.epsilon_decay = 0.995
         self.epsilon_min = 0.05
+
+        self.action_dim = action_dim
+
+        self.best_reward = -float("inf")
+        self.best_model_state = None
 
         self.update_target()
 
@@ -48,6 +51,7 @@ class DQNAgent:
         state = torch.FloatTensor(state).unsqueeze(0).to(self.device)
         with torch.no_grad():
             q_values = self.model(state)
+
         return q_values.argmax().item()
 
     def train(self, replay_buffer, batch_size=64):
@@ -74,5 +78,27 @@ class DQNAgent:
         loss.backward()
         self.optimizer.step()
 
-        # decay epsilon
         self.epsilon = max(self.epsilon_min, self.epsilon * self.epsilon_decay)
+
+    def update_personal_best(self, reward):
+        if reward > self.best_reward:
+            self.best_reward = reward
+            self.best_model_state = {
+                k: v.clone() for k, v in self.model.state_dict().items()
+            }
+
+    def pso_update(self, global_best_state, w=0.5, c1=0.3, c2=0.3):
+        if global_best_state is None:
+            return
+
+        current_state = self.model.state_dict()
+        new_state = {}
+
+        for k in current_state:
+            current = current_state[k]
+            personal = self.best_model_state[k] if self.best_model_state else current
+            global_best = global_best_state[k]
+
+            new_state[k] = w * current + c1 * personal + c2 * global_best
+
+        self.model.load_state_dict(new_state)
