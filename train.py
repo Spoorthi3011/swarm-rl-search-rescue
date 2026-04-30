@@ -1,4 +1,4 @@
-```python
+
 import numpy as np
 import flwr as fl
 from environment.grid_env import GridSearchRescueEnv
