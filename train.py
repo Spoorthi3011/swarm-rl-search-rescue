@@ -1,8 +1,7 @@
 ```python
 import numpy as np
 import flwr as fl
-
-from env.grid_env import GridSearchRescueEnv
+from environment.grid_env import GridSearchRescueEnv
 from agents.dqn_agent import DQNAgent
 from agents.replay_buffer import ReplayBuffer
 from federated.flwr_client import DQNClient
