@@ -1,4 +1,4 @@
-from env.grid_env import GridSearchRescueEnv
+from environment.grid_env import GridSearchRescueEnv
 import random
 import time
 
